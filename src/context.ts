@@ -216,7 +216,7 @@ export async function getInputList(name: string, ignoreComma?: boolean): Promise
   if (items == '') {
     return res;
   }
-  console.log('input', name, items.replace(/\\n/g, '_new_line_'));
+  console.log('input', name, items.replace(/\s+/g, '_new_line_'));
   const records = await parse(items, {
     columns: false,
     relaxQuotes: true,
