@@ -116,6 +116,7 @@ async function getBuildArgs(inputs: Inputs, defaultContext: string, buildxVersio
     args.push('--allow', inputs.allow.join(','));
   }
   await asyncForEach(inputs.buildArgs, async buildArg => {
+    console.log(buildArg);
     args.push('--build-arg', buildArg);
   });
   if (buildx.satisfies(buildxVersion, '>=0.8.0')) {
@@ -215,13 +216,14 @@ export async function getInputList(name: string, ignoreComma?: boolean): Promise
   if (items == '') {
     return res;
   }
-
+  console.log(name, items);
   const records = await parse(items, {
     columns: false,
     relaxQuotes: true,
     relaxColumnCount: true,
     skipEmptyLines: true
   });
+  console.log(name, records);
 
   for (const record of records as Array<string[]>) {
     if (record.length == 1) {
